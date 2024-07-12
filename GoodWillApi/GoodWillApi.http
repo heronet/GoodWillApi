@@ -1,0 +1,14 @@
+@GoodWillApi_HostAddress = http://localhost:5000/api
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNpcnQ0NzU3QGdtYWlsLmNvbSIsImp0aSI6ImZjNTA4N2Q4LWU1MGQtNDI2Yy1iYTdkLTM5NGE0ZWYzNDUyYyIsImV4cCI6MTcyMDYwMzc2MywiaXNzIjoiR29vZFdpbGwiLCJhdWQiOiJHb29kV2lsbEF1ZCJ9._pADiDCNe0PgiQZVSeKFzkJgOl0uLxE0ksVwL-pk2Og
+POST {{GoodWillApi_HostAddress}}/auth/sso
+Content-Type: application/json
+
+{
+    "code": "sdjjksdjkshd",
+    "redirectUrl": "sirat"
+}
+
+
+###
+GET {{GoodWillApi_HostAddress}}/users
+Authorization: Bearer {{token}}
