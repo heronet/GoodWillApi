@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using GoodWillApi.Models;
 using Microsoft.IdentityModel.Tokens;
 
 namespace GoodWillApi.Services;
@@ -9,7 +10,7 @@ public class TokenService(IConfiguration configuration)
 {
     private readonly IConfiguration _configuration = configuration;
 
-    public string GenerateToken(string email)
+    public string GenerateToken(User user)
     {
         var jwtSettings = _configuration.GetSection("JwtSettings");
         var secretKey = jwtSettings["SecretKey"];
@@ -22,8 +23,8 @@ public class TokenService(IConfiguration configuration)
 
         var claims = new[]
         {
-            new Claim(JwtRegisteredClaimNames.Email, email),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim(ClaimTypes.Email, user.Email),
         };
 
         var token = new JwtSecurityToken(

@@ -47,7 +47,7 @@ public class AuthController(GoodDbContext dbContext, TokenService tokenService) 
             await _dbContext.SaveChangesAsync();
         }
 
-        var token = _tokenService.GenerateToken(user.Email);
+        var token = _tokenService.GenerateToken(user);
 
         return Ok(new { Token = token });
     }
