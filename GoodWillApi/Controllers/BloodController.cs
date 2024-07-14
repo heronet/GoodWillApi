@@ -19,7 +19,10 @@ public class BloodController(GoodDbContext dbContext) : ControllerBase
     [HttpGet]
     public async Task<ActionResult> GetRequests()
     {
-        var requests = await _dbContext.BloodRequests.OrderByDescending(r => r.CreatedAt).ToListAsync();
+        var requests = await _dbContext.BloodRequests
+            .Where(r => r.BagCount > 0)
+            .OrderByDescending(r => r.CreatedAt)
+            .ToListAsync();
 
         return Ok(requests);
     }
