@@ -19,4 +19,14 @@ public static class DtoConverter
             UserId = bloodRequest.UserId,
         };
     }
+    public static BloodDonationDto ToBloodDonationDto(this BloodDonation bloodDonation)
+    {
+        return new BloodDonationDto
+        {
+            Id = bloodDonation.Id,
+            BagCount = bloodDonation.BagCount,
+            BloodRequestId = bloodDonation.BloodRequestId,
+            UserId = bloodDonation.UserId,
+        };
+    }
 }

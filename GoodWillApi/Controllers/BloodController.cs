@@ -19,13 +19,13 @@ public class BloodController(GoodDbContext dbContext) : ControllerBase
     [HttpGet]
     public async Task<ActionResult> GetRequests()
     {
-        var requests = await _dbContext.BloodRequests.ToListAsync();
+        var requests = await _dbContext.BloodRequests.OrderByDescending(r => r.CreatedAt).ToListAsync();
 
         return Ok(requests);
     }
 
 
-    [HttpPost]
+    [HttpPost("request")]
     public async Task<ActionResult> AddRequest([FromBody] BloodRequestDto bloodRequestDto)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -51,5 +51,37 @@ public class BloodController(GoodDbContext dbContext) : ControllerBase
         await _dbContext.SaveChangesAsync();
 
         return CreatedAtAction(nameof(GetRequests), bloodRequest.ToBloodRequestDto());
+    }
+
+    [HttpPost("donate")]
+    public async Task<ActionResult> AddDonation([FromBody] BloodDonationDto bloodDonationDto)
+    {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (userId is null) return Unauthorized();
+
+        var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == Guid.Parse(userId));
+
+        if (user is null) return NotFound();
+
+        var request = await _dbContext.BloodRequests.FirstOrDefaultAsync(d => d.Id == bloodDonationDto.BloodRequestId);
+
+        if (request is null) return NotFound();
+
+        var bloodDonation = new BloodDonation
+        {
+
+            BagCount = bloodDonationDto.BagCount,
+            BloodRequest = request,
+            User = user
+        };
+
+        _dbContext.BloodDonations.Add(bloodDonation);
+
+        // Update the request object
+        request.BagCount -= bloodDonationDto.BagCount;
+
+        await _dbContext.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(GetRequests), bloodDonation.ToBloodDonationDto());
     }
 }

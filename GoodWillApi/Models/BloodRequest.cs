@@ -9,6 +9,7 @@ public class BloodRequest
     public int BagCount { get; set; }
     public double Lat { get; set; }
     public double Lng { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     public required User User { get; set; }
     public Guid UserId { get; set; }
 }
