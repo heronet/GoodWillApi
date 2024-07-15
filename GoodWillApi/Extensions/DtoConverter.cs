@@ -29,4 +29,19 @@ public static class DtoConverter
             UserId = bloodDonation.UserId,
         };
     }
+
+    public static UserDto ToUserDto(this User user)
+    {
+        return new UserDto
+        {
+            Id = user.Id,
+            Name = user.Name,
+            PlaceName = user.PlaceName,
+            Email = user.Email,
+            BloodGroup = user.BloodGroup,
+            Lat = user.Lat,
+            Lng = user.Lng,
+            CreatedAt = user.CreatedAt,
+        };
+    }
 }

@@ -1,6 +1,6 @@
-namespace GoodWillApi.Models;
+namespace GoodWillApi.Data.DTO;
 
-public class User
+public class UserDto
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
@@ -9,6 +9,5 @@ public class User
     public string PlaceName { get; set; } = string.Empty;
     public double Lat { get; set; }
     public double Lng { get; set; }
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-    public ICollection<BloodRequest> BloodRequests { get; set; } = [];
+    public DateTime CreatedAt { get; set; }
 }
