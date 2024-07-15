@@ -4,7 +4,6 @@ using GoodWillApi.Models;
 using GoodWillApi.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 
 namespace GoodWillApi.Controllers;
 
