@@ -16,7 +16,7 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<GoodDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DATABASE_URL")));
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: MyAllowSpecificOrigins, policy => policy.WithOrigins("http://localhost:5173").AllowAnyHeader().AllowAnyMethod());
+    options.AddPolicy(name: MyAllowSpecificOrigins, policy => policy.WithOrigins("http://localhost:5173").WithOrigins("https://goodwillweb.vercel.app").AllowAnyHeader().AllowAnyMethod());
 });
 builder.Services.AddJwtAuthentication(builder.Configuration);
 builder.Services.AddAuthorization();
