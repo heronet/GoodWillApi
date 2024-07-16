@@ -36,7 +36,6 @@ await using var scope = app.Services.CreateAsyncScope();
 await using var db = scope.ServiceProvider.GetRequiredService<GoodDbContext>();
 await db.Database.MigrateAsync();
 
-
 app.UseHttpsRedirection();
 
 app.UseCors(MyAllowSpecificOrigins);
