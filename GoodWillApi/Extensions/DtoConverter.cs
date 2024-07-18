@@ -44,4 +44,16 @@ public static class DtoConverter
             CreatedAt = user.CreatedAt,
         };
     }
+    public static ManpowerRequestDto ToManpowerRequestDto(this ManpowerRequest manpowerRequest)
+    {
+        return new ManpowerRequestDto
+        {
+            Id = manpowerRequest.Id,
+            PlaceName = manpowerRequest.PlaceName,
+            VolunteerCount = manpowerRequest.VolunteerCount,
+            Lat = manpowerRequest.Lat,
+            Lng = manpowerRequest.Lng,
+            UserId = manpowerRequest.UserId,
+        };
+    }
 }

@@ -3,6 +3,7 @@ using System;
 using GoodWillApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GoodWillApi.Data.Migrations
 {
     [DbContext(typeof(GoodDbContext))]
-    partial class GoodDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240718212718_AddManpower")]
+    partial class AddManpower
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,10 +100,6 @@ namespace GoodWillApi.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("IncidentType")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<double>("Lat")
                         .HasColumnType("double precision");
