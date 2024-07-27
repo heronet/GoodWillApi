@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
 
-namespace GoodWillApi.Data.DTO;
+namespace GoodWillApi.Models;
 
-public class FacebookUserDto
+public class FacebookUser
 {
     [JsonPropertyName("id")]
     public string Id { get; set; } = string.Empty;
