@@ -1,13 +1,13 @@
 services:
   server:
     build:
-      context: .
+      context: ./GoodWillApi
       target: final
     ports:
       - 8080:8080
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ConnectionStrings__DATABASE_URL=Host=db;Port=5432;Username=postgres;Password=postgres;Database=postgres
+      - ConnectionStrings__DATABASE_URL=${ConnectionStrings__DATABASE_URL}
       - JwtSettings__SecretKey=${JwtSettings__SecretKey}
       - JwtSettings__Issuer=${JwtSettings__Issuer}
       - JwtSettings__Audience=${JwtSettings__Audience}

@@ -2,23 +2,19 @@
 
 # Create a stage for building the application.
 FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
-
 COPY . /source
-
-WORKDIR /source/GoodWillApi
-
+WORKDIR /source
 RUN dotnet publish --use-current-runtime --self-contained false -o /app
 
 
 # Development stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS development
 COPY . /source
-WORKDIR /source/GoodWillApi
+WORKDIR /source
 CMD dotnet run --no-launch-profile
 
 ################################################################################
 # Production Stage
-
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS final
 WORKDIR /app
 
