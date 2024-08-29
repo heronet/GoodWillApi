@@ -11,6 +11,8 @@ public class BloodRequestDto
 
     [Required]
     public string PlaceName { get; set; } = string.Empty;
+    [Required]
+    public string Phone { get; set; } = string.Empty;
 
     [Required]
     public string BloodGroup { get; set; } = string.Empty;

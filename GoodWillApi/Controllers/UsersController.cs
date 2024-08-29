@@ -44,6 +44,7 @@ public class UsersController(GoodDbContext dbContext) : ControllerBase
         if (user is null) return NotFound();
 
         user.Name = userDto.Name ?? user.Name;
+        user.Phone = userDto.Phone ?? user.Phone;
         user.PlaceName = userDto.PlaceName.IsNullOrEmpty() ? user.PlaceName : userDto.PlaceName;
         user.BloodGroup = userDto.BloodGroup ?? user.BloodGroup;
         user.Lat = userDto.Lat > 0 ? userDto.Lat : user.Lat;

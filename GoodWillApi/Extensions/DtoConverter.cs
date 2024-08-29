@@ -37,6 +37,7 @@ public static class DtoConverter
             Id = user.Id,
             Name = user.Name,
             PlaceName = user.PlaceName,
+            Phone = user.Phone,
             Email = user.Email,
             BloodGroup = user.BloodGroup,
             Lat = user.Lat,

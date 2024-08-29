@@ -46,7 +46,8 @@ public class BloodController(GoodDbContext dbContext) : ControllerBase
             BloodGroup = bloodRequestDto.BloodGroup,
             Lat = bloodRequestDto.Lat,
             Lng = bloodRequestDto.Lng,
-            User = user
+            User = user,
+            Phone = bloodRequestDto.Phone
         };
 
         _dbContext.BloodRequests.Add(bloodRequest);
