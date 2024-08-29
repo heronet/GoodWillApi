@@ -21,6 +21,7 @@ public class ManpowerController(GoodDbContext dbContext) : ControllerBase
     {
         var requests = await _dbContext.ManpowerRequests
             .OrderByDescending(r => r.CreatedAt)
+            .Where(r => r.VolunteerCount > 0)
             .ToListAsync();
 
         return Ok(requests);
@@ -41,6 +42,7 @@ public class ManpowerController(GoodDbContext dbContext) : ControllerBase
         {
             PlaceName = manpowerRequestDto.PlaceName,
             VolunteerCount = manpowerRequestDto.VolunteerCount,
+            Phone = manpowerRequestDto.Phone,
             IncidentType = manpowerRequestDto.IncidentType,
             Lat = manpowerRequestDto.Lat,
             Lng = manpowerRequestDto.Lng,
@@ -55,7 +57,7 @@ public class ManpowerController(GoodDbContext dbContext) : ControllerBase
     }
 
     [HttpPost("volunteer")]
-    public async Task<ActionResult> AddDonation([FromBody] BloodDonationDto bloodDonationDto)
+    public async Task<ActionResult> AddDonation([FromBody] ManpowerDonationDto manpowerDonationDto)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         if (userId is null) return Unauthorized();
@@ -64,25 +66,25 @@ public class ManpowerController(GoodDbContext dbContext) : ControllerBase
 
         if (user is null) return NotFound();
 
-        var request = await _dbContext.BloodRequests.FirstOrDefaultAsync(d => d.Id == bloodDonationDto.BloodRequestId);
+        var request = await _dbContext.ManpowerRequests.FirstOrDefaultAsync(d => d.Id == manpowerDonationDto.ManpowerRequestId);
 
         if (request is null) return NotFound();
 
-        var bloodDonation = new BloodDonation
+        var manpowerDonation = new ManpowerDonation
         {
 
-            BagCount = bloodDonationDto.BagCount,
-            BloodRequest = request,
+            VolunteerCount = manpowerDonationDto.VolunteerCount,
+            ManpowerRequest = request,
             User = user
         };
 
-        _dbContext.BloodDonations.Add(bloodDonation);
+        _dbContext.ManpowerDonations.Add(manpowerDonation);
 
         // Update the request object
-        request.BagCount -= bloodDonationDto.BagCount;
+        request.VolunteerCount -= manpowerDonationDto.VolunteerCount;
 
         await _dbContext.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetRequests), bloodDonation.ToBloodDonationDto());
+        return CreatedAtAction(nameof(GetRequests), manpowerDonation.ToManpowerDonationDto());
     }
 }

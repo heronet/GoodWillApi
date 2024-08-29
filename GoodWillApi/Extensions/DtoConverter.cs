@@ -57,4 +57,14 @@ public static class DtoConverter
             UserId = manpowerRequest.UserId,
         };
     }
+    public static ManpowerDonationDto ToManpowerDonationDto(this ManpowerDonation manpowerDonation)
+    {
+        return new ManpowerDonationDto
+        {
+            Id = manpowerDonation.Id,
+            VolunteerCount = manpowerDonation.VolunteerCount,
+            ManpowerRequestId = manpowerDonation.ManpowerRequestId,
+            UserId = manpowerDonation.UserId,
+        };
+    }
 }

@@ -8,6 +8,8 @@ public class ManpowerRequestDto
 
     [Required]
     public string PlaceName { get; set; } = string.Empty;
+    [Required]
+    public string Phone { get; set; } = string.Empty;
 
     [Required]
     public string IncidentType { get; set; } = string.Empty;

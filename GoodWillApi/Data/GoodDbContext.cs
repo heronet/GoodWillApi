@@ -9,4 +9,5 @@ public class GoodDbContext(DbContextOptions<GoodDbContext> options) : DbContext(
     public DbSet<BloodRequest> BloodRequests { get; set; }
     public DbSet<BloodDonation> BloodDonations { get; set; }
     public DbSet<ManpowerRequest> ManpowerRequests { get; set; }
+    public DbSet<ManpowerDonation> ManpowerDonations { get; set; }
 }
