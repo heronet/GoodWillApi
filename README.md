@@ -75,6 +75,7 @@ GoodWill is a volunteer platform. It is a two part project. This is the `Backend
 - [![SvelteKit][SvelteKit]][sveltekit-url]
 - [![Dotnet][dotnet.microsoft.com]][dotnet-url]
 - [![PostgreSQL][postgresql.org]][postgresql-url]
+- [![Gemini][Gemini]][gemini-url]
 - [![Docker][docker.io]][docker-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -170,4 +171,6 @@ Project Link: [https://github.com/heronet/GoodWillApi](https://github.com/herone
 [postgresql-url]: https://postgresql.org/
 [docker.io]: https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white
 [docker-url]: https://docker.io/
+[gemini-url]: https://gemini.google.com/
 [SvelteKit]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte
+[Gemini]: https://img.shields.io/static/v1?style=for-the-badge&message=Google+Gemini&color=8E75B2&logo=Google+Gemini&logoColor=FFFFFF&label=
